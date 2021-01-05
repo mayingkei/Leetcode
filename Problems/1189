@@ -1,0 +1,47 @@
+1189. Maximum Number of Balloons
+Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+
+You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+------------------------
+
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        unordered_map<char, int> m;
+        vector<int> num;
+        int count = 0;
+        
+        for(auto x: text)
+            m[x]++;
+            
+        for (auto x : m){
+            if (x.first == 'b'){
+                num.push_back(x.second);
+                count++;
+            }
+            if (x.first == 'a'){
+                num.push_back(x.second);
+                count++;
+            }
+            if (x.first == 'l'){
+                num.push_back(x.second/2);
+                count++;
+            }
+            if (x.first == 'o'){
+                num.push_back(x.second/2);
+                count++;
+            }
+            if (x.first == 'n'){
+                num.push_back(x.second);
+                count++;
+            }
+        }
+        
+        if(count == 5)
+            return *min_element(num.begin(),num.end());
+        else
+            return 0;
+        
+    }
+};
