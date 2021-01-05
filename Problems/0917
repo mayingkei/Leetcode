@@ -1,0 +1,34 @@
+917. Reverse Only Letters
+Given a string S, return the "reversed" string where all characters that are not a letter stay in the same place, and all letters reverse their positions.
+
+ --------------------------
+ 
+ class Solution {
+public:
+    string reverseOnlyLetters(string S) {
+        vector<string> word(S.size(), "");
+        string letter, res;
+            
+        for(int i = 0; i < S.size(); i++){
+            if(isalpha(S[i]))
+                letter += S[i];
+            else
+                word[i] = S[i];
+        }
+        
+        reverse(letter.begin(), letter.end());
+        
+        for(int i = 0; i < word.size(); i++){
+            if(word[i] == ""){
+                word[i] = letter[0];
+                letter.erase(0,1);
+            }
+        }
+        
+        for(auto x: word)
+            res += x;
+   
+        return res;
+        
+    }
+};
