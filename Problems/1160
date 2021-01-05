@@ -1,0 +1,33 @@
+1160. Find Words That Can Be Formed by Characters
+You are given an array of strings words and a string chars.
+
+A string is good if it can be formed by characters from chars (each character can only be used once).
+
+Return the sum of lengths of all good strings in words.
+
+--------------------------
+
+class Solution {
+public:
+    int countCharacters(vector<string>& words, string chars) {
+        int res = 0;
+        for(auto x: words){
+            string temp = chars;
+            int count = 0;
+            for(int i = 0; i < x.size(); i++){
+                for (int j = 0; j < temp.size();j++){
+                    if(x[i] == temp[j]){
+                        temp.erase(temp.begin() + j);
+                        count++;
+                        break;
+                    }
+                }
+            }
+            
+            if (count == x.size()){
+                res+=count;
+            }
+        }
+        return res;
+    }
+};
