@@ -1,0 +1,54 @@
+748. Shortest Completing Word
+Given a string licensePlate and an array of strings words, find the shortest completing word in words.
+
+A completing word is a word that contains all the letters in licensePlate. Ignore numbers and spaces in licensePlate, and treat letters as case insensitive. If a letter appears more than once in licensePlate, then it must appear in the word the same number of times or more.
+
+For example, if licensePlate = "aBc 12c", then it contains letters 'a', 'b' (ignoring case), and 'c' twice. Possible completing words are "abccdef", "caaacab", and "cbca".
+
+Return the shortest completing word in words. It is guaranteed an answer exists. If there are multiple shortest completing words, return the first one that occurs in words.
+
+-------------------------------
+
+class Solution {
+public:
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+        vector<int> m(26, 0);
+        string res;
+        int k = INT_MAX;
+        
+        for(auto ch: licensePlate){
+            if(isalpha(ch)){
+                ch = tolower(ch);
+                m[ch-97]++;
+            }
+        }
+        
+        for(auto word: words){
+            bool flag = true;
+            vector<int> n(26,0);
+            
+            for(auto ch: word){
+                if(isalpha(ch)){
+                    ch = tolower(ch);
+                    n[ch - 97]++;
+                }
+            }
+            
+            for(int i = 0; i < 26; i++){
+                if(m[i] > n[i]){
+                    flag = false;
+                    break;
+                }
+            }
+            
+            if(flag && word.size() < k){
+                res = word;
+                k = word.size();
+            }
+                
+                
+        }
+            
+        return res;      
+    }
+};
