@@ -12,17 +12,27 @@ public:
         
         res. push_back("1");
         for (int i = 2; i <= n;i++){
-            if(i % 3 == 0 && i % 5 != 0)
-                res.push_back("Fizz");
+            bool a = false, b = false;
+            if(i % 3 == 0) 
+                a = true;
+            if(i % 5 == 0)
+                b = true;
             
-            if(i % 5 == 0 && i % 3 != 0)
-                res.push_back("Buzz");
-            
-            if(i % 5 == 0 && i % 3 == 0)
+            if(a && b){
                 res.push_back("FizzBuzz");
+                continue;
+            }
+            if(a){
+                res.push_back("Fizz");
+                continue;
+            }
+            if(b){
+                res.push_back("Buzz");
+                continue;
+            }
             
-            if(i % 5 != 0 && i % 3 != 0)
-                res.push_back(to_string(i));
+            else
+             res.push_back(to_string(i));
         }
         
         return res;
