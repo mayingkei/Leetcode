@@ -1,0 +1,33 @@
+1436. Destination City
+You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing to another city.
+
+It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be exactly one destination city.
+
+--------------------------
+
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        map<string, int> m;
+        string res;
+        
+        for(int i = 0; i < paths.size(); i++){
+            for(int j = 0; j < 2; j++){
+                if(j == 0)
+                    m[paths[i][j]]--;
+                
+                if(j == 1)
+                    m[paths[i][j]]++;
+            }
+        }
+        
+        for(auto it: m){
+            if(it.second == 1){
+                res = it.first;
+                break;
+            }
+        }
+        
+        return res;
+    }
+};
