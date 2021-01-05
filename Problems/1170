@@ -1,0 +1,41 @@
+1170. Compare Strings by Frequency of the Smallest Character
+Let's define a function f(s) over a non-empty string s, which calculates the frequency of the smallest character in s. For example, if s = "dcce" then f(s) = 2 because the smallest character is "c" and its frequency is 2.
+
+Now, given string arrays queries and words, return an integer array answer, where each answer[i] is the number of words such that f(queries[i]) < f(W), where W is a word in words.
+
+ ----------------------------------
+ 
+ class Solution {
+public:
+    vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {
+        vector<int> res, w;
+        
+        
+        for(int i = 0; i < words.size();i++){
+            char temp = 'z';
+            for(auto x: words[i]){
+                if(x < temp)
+                    temp = x;
+            }
+            w.push_back(count(words[i].begin(),words[i].end(), temp));
+        }
+        
+        for(int i = 0; i < queries.size();i++){
+            char temp = 'z';
+            for(auto x: queries[i]){
+                if(x < temp)
+                    temp = x;
+            }
+            int num = count(queries[i].begin(),queries[i].end(), temp), count = 0;
+            
+            for(int i = 0; i < w.size(); i++){
+                if(num < w[i])
+                    count++;
+            }
+            res.push_back(count);
+                
+        }
+        
+        return res;
+    }
+};
