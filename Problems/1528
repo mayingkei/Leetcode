@@ -1,0 +1,28 @@
+1528. Shuffle String
+Given a string s and an integer array indices of the same length.
+
+The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string.
+
+Return the shuffled string.
+
+-----------------------------
+
+class Solution {
+public:
+    string restoreString(string s, vector<int>& indices) {
+        
+        string res = "";
+        map<int, char> m;
+        map<int, char>:: iterator it;
+        
+        for(int i = 0; i < s.size(); i++){
+            m[indices[i]] = s[i];
+        }
+            
+        for(it = m.begin(); it != m.end(); it++){
+            res += it->second;
+        }
+        
+        return res;
+    }
+};
