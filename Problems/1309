@@ -1,0 +1,65 @@
+1309. Decrypt String from Alphabet to Integer Mapping
+Given a string s formed by digits ('0' - '9') and '#' . We want to map s to English lowercase characters as follows:
+
+Characters ('a' to 'i') are represented by ('1' to '9') respectively.
+Characters ('j' to 'z') are represented by ('10#' to '26#') respectively. 
+Return the string formed after mapping.
+
+It's guaranteed that a unique mapping will always exist.
+
+--------------------------
+
+class Solution {
+public:
+    string freqAlphabets(string s) {
+        map<string,char> m;
+        vector<string> room;
+        string res = "";
+        
+        m.insert(pair<string,char>("1", 'a'));
+        m.insert(pair<string,char>("2", 'b'));
+        m.insert(pair<string,char>("3", 'c'));
+        m.insert(pair<string,char>("4", 'd'));
+        m.insert(pair<string,char>("5", 'e'));
+        m.insert(pair<string,char>("6", 'f'));
+        m.insert(pair<string,char>("7", 'g'));
+        m.insert(pair<string,char>("8", 'h'));
+        m.insert(pair<string,char>("9", 'i'));
+        m.insert(pair<string,char>("10#", 'j'));
+        m.insert(pair<string,char>("11#", 'k'));
+        m.insert(pair<string,char>("12#", 'l'));
+        m.insert(pair<string,char>("13#", 'm'));
+        m.insert(pair<string,char>("14#", 'n'));
+        m.insert(pair<string,char>("15#", 'o'));
+        m.insert(pair<string,char>("16#", 'p'));
+        m.insert(pair<string,char>("17#", 'q'));
+        m.insert(pair<string,char>("18#", 'r'));
+        m.insert(pair<string,char>("19#", 's'));
+        m.insert(pair<string,char>("20#", 't'));
+        m.insert(pair<string,char>("21#", 'u'));
+        m.insert(pair<string,char>("22#", 'v'));
+        m.insert(pair<string,char>("23#", 'w'));
+        m.insert(pair<string,char>("24#", 'x'));
+        m.insert(pair<string,char>("25#", 'y'));
+        m.insert(pair<string,char>("26#", 'z'));
+        
+        for(int i = s.size()-1; i >= 0; i--){
+            string temp = "";
+            if(s[i] =='#'){
+                temp = temp +s[i-2] + s[i-1]+s[i];
+                i-=2;
+            }
+            else
+                temp = s[i];
+            
+            room.push_back(temp);
+        }
+        
+        for(int i = room.size()-1; i >= 0; i--){
+            auto it = m.find(room[i]);
+            res += it->second;
+        }
+
+        return res;
+    }
+};
