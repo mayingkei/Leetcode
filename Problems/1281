@@ -1,0 +1,26 @@
+1281. Subtract the Product and Sum of Digits of an Integer
+Given an integer number n, return the difference between the product of its digits and the sum of its digits.
+
+---------------------
+
+class Solution {
+public:
+    int subtractProductAndSum(int n) {
+        int product = 1, sum = 0, temp = n, res;
+        
+        while (temp != 0){
+            product *= (temp%10);
+            temp /= 10;
+        }
+        
+        temp = n;
+        
+        while (temp != 0){
+            sum += (temp%10);
+            temp /= 10;
+        }
+        
+        res = product - sum;
+        return res;
+    }
+};
