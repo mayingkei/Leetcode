@@ -1,0 +1,36 @@
+500. Keyboard Row
+Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
+
+-------------------------
+
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        string  up = "qwertyuiopQWERTYUIOP", 
+                middle = "asdfghjklASDFGHJKL",
+                down = "zxcvbnmZXCVBNM";
+        vector<string> res;
+        
+        for (int i = 0; i < words.size(); i++){
+            bool a = false,b = false,c = false, flag = true;
+            for(auto x: words[i]){
+                if (up. find(x) != -1)
+                    a = true;
+                if (middle. find(x) != -1)
+                    b = true;
+                if (down. find(x) != -1)
+                    c = true;
+                
+                if((a && b) ||(a && c) ||(b && c) || (a && b && c)){
+                    flag = false;
+                    break;
+                }
+            }
+            
+            if(flag)
+                res.push_back(words[i]);
+        }
+        
+        return res;
+    }
+};
