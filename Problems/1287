@@ -1,0 +1,24 @@
+1287. Element Appearing More Than 25% In Sorted Array
+Given an integer array sorted in non-decreasing order, there is exactly one integer in the array that occurs more than 25% of the time.
+
+Return that integer.
+
+-----------------------------
+
+class Solution {
+public:
+    int findSpecialInteger(vector<int>& arr) {
+        unordered_map<int,int> m;
+        int res;
+        
+        for(auto x: arr)
+            m[x]++;
+        
+        for(auto x:m){
+            if(x. second > arr.size()/4)
+                res = x.first;
+        }
+        
+        return res;
+    }
+};
