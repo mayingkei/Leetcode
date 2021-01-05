@@ -1,0 +1,25 @@
+349. Intersection of Two Arrays
+Given two arrays, write a function to compute their intersection.
+
+-------------------------
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> res;
+        
+        if(nums1.size() > nums2.size())
+            swap(nums1, nums2);
+        
+        for(auto x:nums1){
+            if (find(nums2.begin(), nums2.end(), x) != nums2.end())
+                res. push_back(x);
+        }
+        
+        sort(res.begin(), res.end());
+        res. erase(unique(res.begin(), res.end()), res.end());
+              
+        return res;
+    
+    }
+};
